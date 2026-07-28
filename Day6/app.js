@@ -1,18 +1,19 @@
-import express from "express"
-import dotenv from "dotenv"
-import userRoutes from "./routes/userRoutes.js"
+import express from "express";
+import dotenv from "dotenv";
+import userRoutes from "./routes/userRoutes.js";
+import productRouting from "./routes/productRouting.js";
 
 dotenv.config();
 
-const app = express()
+const app = express();
 
-const PORT = process.env.PORT ||3000
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use("/api/users",userRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/products", productRouting);
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
-    
-})
+});
