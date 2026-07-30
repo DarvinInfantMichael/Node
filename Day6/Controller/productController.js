@@ -18,7 +18,8 @@ export const createProduct = async (req, res) => {
 
 export const deleteProduct = async (req, res) => {
     try {
-        res.send("Product Deleted Successfully");
+        const id = req.params.id
+        res.send(`Product Deleted Successfully${id}`);
     } catch (error) {
         console.log(error);
         res.status(500).send("Server Error");
