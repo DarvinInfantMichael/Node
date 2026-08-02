@@ -1,0 +1,23 @@
+import dotenv from "dotenv"
+import express from "express"
+import cors from "cors"
+import operation from "./routes/AuthRoute.js"
+import { connectionDB } from "./config/db.js"
+
+dotenv.config()
+
+const app = express()
+
+app.use(cors())
+
+app.use(express.json());
+
+app.use("/api",operation)
+
+connectionDB()
+
+const PORT = process.env.PORT||3000
+
+app.listen(PORT,()=>{
+    console.log(`Server Running At http://localhost:${PORT}`);
+})
