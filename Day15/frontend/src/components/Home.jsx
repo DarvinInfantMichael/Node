@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
-import Registraion from "../../../Registraion";
-import Login from "../../../Login";
+import Registraion from "../pages/Registraion";
+import Login from "../pages/Login";
 
 const Home = () => {
   return (

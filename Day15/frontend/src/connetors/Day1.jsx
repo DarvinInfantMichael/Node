@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../components/Home";
-import Registraion from "../components/Registraion";
-import Login from "../components/Login";
-import Dashboard from "../components/DashBoard";
+import Registraion from "../pages/Registraion"
+import Login from "../pages/Login"
+import Dashboard from "../pages/DashBoard";
 
 const Day1 = () => {
   return (

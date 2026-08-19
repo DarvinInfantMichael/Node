@@ -1,6 +1,7 @@
 import express from "express"
 import { Dashboard, Login, Registration } from "../controller/authController.js";
 
+
 const authRoute =express.Router();
 
 authRoute.post("/register",Registration);
