@@ -15,4 +15,5 @@ export const connectionDB = async()=>{
         process.exit(1);
 
     }
+    
 }

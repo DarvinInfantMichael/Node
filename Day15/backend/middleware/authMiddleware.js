@@ -11,7 +11,7 @@ export const authMiddleware = async(req,res,next) =>{
         if(!authHeader){
 
             return res.status(401).json({msg:"Authorization Heade is Missing Here"})
-
+                
         }
 
         const token =authHeader.split(" ")[1]
