@@ -17,7 +17,9 @@ export const authMiddleware = async(req,res,next) =>{
         const token =authHeader.split(" ")[1]
 
         if(!token){
+
             return res.status(401).json({msg:"Token Missing"})
+
         }
 
         const decode =jwt.verify(token,process.env.REFRESH_SECRET)
@@ -29,7 +31,6 @@ export const authMiddleware = async(req,res,next) =>{
     } catch (error) {
 
         res.status(500).json({msg:"Server Error"})
-        
-        
+          
     }
 }
