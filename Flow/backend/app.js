@@ -4,8 +4,6 @@ import express from "express"
 import AllData from "./routes/crud.js";
 import { connectionDB } from "./config/db.js";
 
-
-
 dotenv.config()
 
 const app =express();
