@@ -13,6 +13,8 @@ const Dashboard = () => {
 
         const res = await fet.json();
 
+    
+
         setProducts(res.products);
         
       } catch (error) {
@@ -36,7 +38,22 @@ const Dashboard = () => {
 
     }
 
-    
+    if(search){
+
+      AllData=AllData.filter((e)=>e.title.toLowerCase().includes(search.toLowerCase));
+
+    }
+
+    const [sortData,setSortData] =useState("");
+
+    const HandleSort =(e)=>{
+
+      setSortData(e.target.value);
+    }
+
+    AllData=AllData.filter((e)=>e.category==sortData);
+
+  
 
   return (
     <>
@@ -51,6 +68,12 @@ const Dashboard = () => {
         onChange={HandleSearch}
         value={search}
         placeholder="Enter Name Of Product"/>
+
+        <select onChange={HandleSort}>
+          <option>Select Sorting</option>
+          <option>Low-High</option>
+          <option>High-Low</option>
+        </select>
 
         {AllData.map((e=>(
 
