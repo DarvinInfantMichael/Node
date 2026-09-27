@@ -2,11 +2,12 @@ import dotenv from "dotenv"
 import express from "express"
 import {ConnectionDB} from "./config/db.js"
 import authRoutes from "./routes/authRoutes.js"
-
+import cors from "cors"
 
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.json()); // This is required to parse JSON request bodies!
 
 ConnectionDB();

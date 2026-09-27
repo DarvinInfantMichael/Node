@@ -1,10 +1,10 @@
-import Dashboard from "./pages/Dashboard"
+import AppRoutes from "./routes/AppRoutes"
 
 const App = () => {
   return (
     <>
     <div>
-      <Dashboard/>
+      <AppRoutes/>
     </div>
     </>
   )

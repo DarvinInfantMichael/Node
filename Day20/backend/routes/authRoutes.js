@@ -6,7 +6,7 @@ import {Login} from "../controller/authController.js"
 const run = express.Router();
 
 run.post("/register",RegisterData);
-run.get("/login",Login);
+run.post("/login",Login);
 
 export default run ;
 
