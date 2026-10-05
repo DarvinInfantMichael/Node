@@ -18,13 +18,15 @@ const Registration = () => {
 
         e.preventDefault();
 
-        const res = JSON.parse(localStorage.getItem("AtData"))||[];
+        const res = JSON.parse(localStorage.getItem("AtData")) || [];
 
-        localStorage.setItem("AtData",res);
+        res.push(detail);
+
+        localStorage.setItem("AtData", JSON.stringify(res)); 
 
         setDetail({UserName:"",UserEmail:"",UserPassword:""});
 
-        nav()
+        nav("/login");
 
     }
 
