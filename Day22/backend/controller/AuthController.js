@@ -1,3 +1,6 @@
+
+import bcrypt from "bcrypt"
+
 export const Registration =async(req,res)=>{
     try {
         
@@ -24,13 +27,16 @@ export const Registration =async(req,res)=>{
     return res.status(400).json({
         msg: "Password must contain 8 characters, uppercase, lowercase, number and special character"
     });
+
 }
 
-const newData = await userMode.create({UserName,UserEmail,UserPassword});
+const neat = await bcrypt.hash({UserPassword},10);
+
+const newData = await userMode.create({UserName,UserEmail,UserPassword:neat});
 
 res.status(200).json({msg:"Registered Successfully"});
 
-    } catch (error) {
+} catch (error) {
 
         return res.status(500).json({msg:"Server Error"},error);
         
