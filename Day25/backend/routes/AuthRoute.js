@@ -1,5 +1,20 @@
-import express, { Router } from "express"
+import express from "express";
 
-const api = express.Router();
+import {
+    Registeration,
+    Login,
+    Dashboard
+} from "../controllers/authController.js";
 
-export default api
+import { authMiddleware } from "../middleware/AuthMiddleware.js";
+
+const router = express.Router();
+
+// Public Routes
+router.post("/register", Registeration);
+router.post("/login", Login);
+
+// Protected Route
+router.get("/dashboard", authMiddleware, Dashboard);
+
+export default router;

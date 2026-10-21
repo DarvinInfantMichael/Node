@@ -6,6 +6,8 @@ dotenv.config()
 
 const app = express();
 
+app.use("/api/bank", bankRoutes);
+
 ConnectionDB()
 
 const PORT = process.env.PORT||5000;
