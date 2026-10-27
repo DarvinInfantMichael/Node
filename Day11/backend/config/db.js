@@ -9,7 +9,7 @@ import mongoose from "mongoose";
         
     } catch (error) {
 
-        console.log("Error",error);
+        console.log("Error",error.message);
         process.exist(1)
         
     }

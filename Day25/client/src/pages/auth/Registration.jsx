@@ -2,12 +2,11 @@ import { useState } from "react"
 import {useNavigate} from "react-router-dom"
 
 
-const Regsitration = () => {
+const Registration = () => {
 
     const nav =useNavigate();
 
-    const [regis,setRegis]=useState({UserName:"",UserEmail:"",UserPassword:""});
-    const [details,setDetails] = useState([]);
+    const [regis,setRegis]=useState({UserName:"",UserEmail:"",UserPassword:"",role:"user"});
     
     const HandleChange =(e)=>{
 
@@ -21,11 +20,24 @@ const Regsitration = () => {
 
         const local =JSON.parse(localStorage.getItem("UserCompleteData"))||[];
 
-        localStorage.setItem("UserCompleteData",JSON.stringify(local));
+         const exist = local.find((user) =>
+            user.UserEmail === regis.UserEmail
+        );
 
-        setRegis({UserName:"",UserEmail:"",UserPassword:""})
+         if (exist) {
+            alert("Email Already Registered");
+            return;
+        }
 
-        nav("login");
+        const updated =[...local,regis];
+
+        localStorage.setItem("UserCompleteData",JSON.stringify(updated));
+
+        setRegis({UserName:"",UserEmail:"",UserPassword:"",role:"user"});
+
+        alert("Register User Successfully..")
+
+        nav("/login");
     }
 
 
@@ -49,6 +61,16 @@ const Regsitration = () => {
             <input type="password" onChange={HandleChange} name="UserPassword" value={regis.UserPassword} placeholder="Enter Password to Register"/>
             <br></br>
 
+            <label>Select Role:</label>
+            <select name="role"
+                    value={regis.role}
+                    onChange={HandleChange}>
+
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                        
+                    </select>
+
             <button onClick={handlesubmit}>Register</button>
             <br></br>
 
@@ -58,4 +80,4 @@ const Regsitration = () => {
   )
 }
 
-export default Regsitration
+export default Registration;

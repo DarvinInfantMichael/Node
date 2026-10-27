@@ -5,8 +5,7 @@ const Login =()=>{
 
     const nav = useNavigate();
 
-    const [loot,setLoot] =useState({userEmail:"",userPassword:""});
-    const [detail,setDetail] =useState([]);
+    const [loot,setLoot] =useState({UserEmail:"",UserPassword:"",role:"user"});
 
     const HandleChange =(e)=>{
 
@@ -14,14 +13,35 @@ const Login =()=>{
 
     }
 
-    const handle=(e)=>{
+    const Handle=(e)=>{
         e.preventDefault();
 
         const label = JSON.parse(localStorage.getItem("UserCompleteData"))||[];
 
-        const exist = label.find((label)=>loot.userEmail===label.userEmail && loot.userPassword===label.userPassword);
+        const exist = label.find((label)=>loot.UserEmail===label.UserEmail && loot.UserPassword===label.UserPassword  && loot.role === label.role);
 
-        
+        if(exist){
+
+            sessionStorage.setItem("CurrentUser",JSON.stringify({
+                UserName:exist.UserName,
+                UserEmail:exist.UserEmail,
+                role:exist.role
+
+            }));
+
+            alert("Login Sucessfully");
+
+            if(exist.role==="admin"){
+                nav("/admin-dashboard");
+            }else{
+                nav("/user-Dashboard");
+            }
+            
+        }else{
+            alert("Invalid Email,Password or Role");
+        }
+
+       
     }
 
     return (
@@ -31,11 +51,19 @@ const Login =()=>{
                 <h1>Login Form</h1>
 
                 <label>Enter UserEmail :</label>
-                <input type="email" onChange={HandleChange} name="userEmail" value={loot.userEmail} placeholder="Enter Registered Email"/><br></br>
+                <input type="email" onChange={HandleChange} name="UserEmail" value={loot.UserEmail} placeholder="Enter Registered Email"/><br></br>
 
                 <label>Enter UserPassword :</label>
-                <input type="password" onChange={HandleChange} name="userPassword" value={loot.userPassword} placeholder="Enter Registered Password"/><br></br>
+                <input type="password" onChange={HandleChange} name="UserPassword" value={loot.UserPassword} placeholder="Enter Registered Password"/><br></br>
 
+                <select name="role"
+                        value={loot.role}
+                        onChange={HandleChange}>
+
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+
+                </select>
                 <button onClick={Handle}>Login</button><br></br>
             </div>
         </div>
