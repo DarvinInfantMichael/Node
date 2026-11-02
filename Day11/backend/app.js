@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 import express from "express"
 import cors from "cors"
 import {connectionDB} from "./config/db.js"
-import userRoutes from "./routes/crudRoute.js"
+import crudRouter from "./routes/crudRoute.js"
 
 dotenv.config()
 
@@ -14,7 +14,7 @@ app.use(express.json())
 
 connectionDB()
 
-app.use("/api/collect",userRoutes);
+app.use("/api/collect",crudRouter);
 
 const PORT=process.env.PORT||3000
 
